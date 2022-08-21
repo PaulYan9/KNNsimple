@@ -139,7 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="KNNnaive.cpp" />
     <ClCompile Include="KNNsimple.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="vecoperation.h" />
+    <ClInclude Include="KNNnaive.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
