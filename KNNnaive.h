@@ -23,6 +23,7 @@ namespace knn
 				distance dis;
 			};
 
+			std::vector<int>__index;
 			__data_t* __data;
 			DistMethod __method;
 			int __k;
@@ -33,6 +34,11 @@ namespace knn
 
 			void fit(const vecop::features& X, const vecop::class_label& Y);
 			void predict(vecop::feature X);
+
+		private:
+			inline void __euclidean_dist(const vecop::feature& obj);
+			inline void __manhattan_dist(const vecop::feature& obj);
+			inline int __max_repeat(const vecop::class_label& y);
 	};
 }
 
