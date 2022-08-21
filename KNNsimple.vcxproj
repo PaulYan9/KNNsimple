@@ -143,6 +143,7 @@
     <ClCompile Include="KNNsimple.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="distances.h" />
     <ClInclude Include="vecoperation.h" />
     <ClInclude Include="KNNnaive.h" />
   </ItemGroup>
