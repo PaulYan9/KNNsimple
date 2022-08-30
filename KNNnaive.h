@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+
 #include "vecoperation.h"
 #include "distances.h"
 
@@ -34,6 +36,9 @@ namespace knn
 
 			void fit(const vecop::features& X, const vecop::class_label& Y);
 			void predict(vecop::feature X);
+
+			distance get_dist(int k);
+			vecop::class_label get_labels(int k);
 
 		private:
 			inline void __euclidean_dist(const vecop::feature& obj);

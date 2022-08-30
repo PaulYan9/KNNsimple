@@ -41,6 +41,30 @@ void KNNnaive::predict(vecop::feature X)
 	return this->__max_repeat(y_pred);
 }
 
+distance knn::KNNnaive::get_dist(int k)
+{
+	if (k > this->__index.size())
+		k = this->__index.size();
+
+	distance dist(k);
+	std::transform(this->__index.begin(), this->__index.begin() + k, dist.begin(),
+		[&](int i) {return this->__data->dis[i]; });
+
+	return dist;
+}
+
+vecop::class_label knn::KNNnaive::get_labels(int k)
+{
+	if (k > this->__index.size())
+		k = this->__index.size();
+
+	vecop::class_label labels(k);
+	std::transform(this->__index.begin(), this->__index.begin() + k, labels.begin(),
+		[&](int i) {return this->__data->__Y[i]; });
+
+	return dist;
+}
+
 inline void knn::KNNnaive::__euclidean_dist(const vecop::feature& obj)
 {
 	for (auto feat : this->__data->__X)
@@ -55,5 +79,17 @@ inline void knn::KNNnaive::__manhattan_dist(const vecop::feature& obj)
 
 inline int knn::KNNnaive::__max_repeat(const vecop::class_label& y)
 {
-	return 0;
+	std::map<int, int> uniq_vals;
+
+	for (auto y_pred : y)
+	{
+		if (uniq_vals.find(y_pred) == uniq_vals.end())
+			uniq_vals[y_pred] = 1;
+		else
+			uniq_vals[y_pred] += 1;
+	}
+
+	auto max_el = std::max_element(uniq_vals.begin(), uniq_vals.end());
+
+	return max_el->first;
 }
